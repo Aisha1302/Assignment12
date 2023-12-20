@@ -52,9 +52,15 @@ let countDown = setInterval(function () {
 }, 1000);
 
 $("textarea").keyup(function () {
-    let maxLength = $(this).val().length;
-    $("#remainChar").text(`${100 - maxLength}`);
-    if (maxLength == 100) {
-        $("#remainChar").text("your available character finished");
+    let maxLength = 100;
+    let currentLength = $(this).val().length;
+    let remainingChars = maxLength - currentLength;
+
+    if (remainingChars >= 0) {
+        $("#remainChar").text(remainingChars + " characters remaining");
+    } else {
+        $("#remainChar").text("Your available characters are finished");
     }
+});
+
 });
